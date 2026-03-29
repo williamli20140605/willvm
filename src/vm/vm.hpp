@@ -1,6 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace willvm::vm {
+namespace willvm::vm
+{
 
 }

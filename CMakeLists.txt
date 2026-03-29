@@ -9,7 +9,7 @@ set(SOURCES
     src/main.cpp
     src/vm/cpu/cpu.cpp
     src/vm/cpu/alu/alu.cpp
-    src/vm/cpu/decoder/decoder.cpp
+    src/vm/cpu/executer/executer.cpp
     src/vm/cpu/pc/pc.cpp
     src/vm/cpu/registers/registers.cpp
     src/vm/memory/memory.cpp

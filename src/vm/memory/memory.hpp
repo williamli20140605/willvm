@@ -17,7 +17,8 @@ class Memory
 
   public:
   public:
-    Memory(uint32_t rom_size = 32768, const std::vector<uint16_t> &rom_content = {});
+    Memory(uint32_t rom_size = 32768,
+           const std::vector<uint16_t> &rom_content = {});
     uint16_t read(uint32_t addr);
     void write(uint32_t addr, uint16_t val);
 };
