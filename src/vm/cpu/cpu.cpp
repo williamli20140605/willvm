@@ -3,7 +3,23 @@
 namespace willvm::vm
 {
 
-CPU::CPU() {}
+CPU::CPU(Memory &mem) : memory(mem) { running = true; }
+
+void CPU::tick()
+{
+    if (!running)
+        return;
+    // Fetch-Decode-Execute tick
+    uint16_t opcode, operand1, operand2, operand3;
+    opcode = fetch(pc.tick);
+    operand1 = fetch(pc.tick + 1);
+    operand2 = fetch(pc.tick + 2);
+    operand3 = fetch(pc.tick + 3);
+    execute(opcode, operand1, operand2, operand3);
+    pc.next_tick();
+}
+
+uint16_t CPU::fetch(uint32_t tick) { return memory.read(tick); }
 
 void CPU::execute(uint16_t raw_opcode, uint16_t operand1, uint16_t operand2,
                   uint16_t operand3)
@@ -48,7 +64,8 @@ void CPU::execute(uint16_t raw_opcode, uint16_t operand1, uint16_t operand2,
                    alu._xor(regs.read(operand1), regs.read(operand2)));
         break;
     case Instruction::HLT:
-        break; // nothing yet
+        running = false;
+        break;
     default:
         break;
     }

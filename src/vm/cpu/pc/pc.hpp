@@ -1,13 +1,14 @@
 #pragma once
 #include "../../vm.hpp"
 
-namespace willvm::vm {
+namespace willvm::vm
+{
 
-class Timer
+class PC
 {
   public:
-    Timer();
-    uint64_t time;
+    PC();
+    uint32_t tick;
     void next_tick();
 };
 
